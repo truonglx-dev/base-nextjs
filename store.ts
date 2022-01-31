@@ -1,5 +1,4 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
-
 import authSlice from './features/auth/userSlice';
 
 export const makeStore = () =>
@@ -7,6 +6,10 @@ export const makeStore = () =>
     reducer: {
       auth: authSlice,
     },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: false,
+      }),
   });
 
 const store = makeStore();

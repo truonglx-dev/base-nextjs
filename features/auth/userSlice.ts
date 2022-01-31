@@ -37,8 +37,8 @@ export const authenticateSlice = createSlice({
     removeToken: (state) => {
       state.accessToken = '';
     },
-    setUser: (state, action: PayloadAction<any>) => {
-      state.user = action.payload;
+    setUser: (state, action: PayloadAction<User>) => {
+      state.user = { email: action.payload.email, id: action.payload.id };
     },
     logOut: (state) => {
       state.accessToken = '';
@@ -85,7 +85,7 @@ export const authenticateSlice = createSlice({
 
     builder.addCase(getMe.fulfilled, (state, action) => {
       state.loading = false;
-      state.user = action.payload.data.user;
+      state.user = { email: action.payload.data.user.email, id: action.payload.data.user.id };
     });
   },
 });
